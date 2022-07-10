@@ -30,7 +30,7 @@ function log(e) {
 function playAudio() {
   audio.src = track.src;
   audio.play()
-  .then(_ => updateMetadata())
+//  .then(_ => updateMetadata())
   .catch(error => log(error));
 }
 
@@ -91,7 +91,8 @@ try {
 }
 
 try {
-  updateMetadata();
+//  audio.src = track.src;
+//  updateMetadata();
 } catch (error) {
   log(error);
 }
