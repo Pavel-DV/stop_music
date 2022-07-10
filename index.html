@@ -84,7 +84,12 @@ function getAwesomePlaylist() {
     };
 }
 
-// playAudio();
+try {
+  playAudio();
+} catch (error) {
+  log(error);
+}
+
 try {
   updateMetadata();
 } catch (error) {
