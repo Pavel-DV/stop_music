@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
-<title>Stop music</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="https://0o00.ru/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="https://0o00.ru/favicon-96x96.png">
+    <title>Stop music</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="https://0o00.ru/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://0o00.ru/favicon-96x96.png">
 </head>
 <body>
+
 <h1>Tap</h1>
+
 <pre id="log"></pre>
 
 <script>
+    const audio = document.createElement('audio');
 
-document.addEventListener('click', playAudio);
-const audio = document.createElement('audio');
+    document.addEventListener('click', playAudio);
 
-function log(e) {
-  const line = typeof e === 'string' ? e : e.message;
-  document.querySelector('#log').textContent += line + '\n';
-  console.log(line);
-};
+    function log(e) {
+        const line = typeof e === 'string' ? e : e.message;
+        document.getElementById('log').textContent += line + '\n';
+        console.log(line);
+    }
 
-function playAudio() {
-  audio.src = 'data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhAAAAAA==';
-  audio.play()
-  .then(_ => location.reload())
-  .catch(error => log(error));
-}
+    function playAudio() {
+        audio.src = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbAAqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV////////////////////////////////////////////AAAAAExhdmM1OC4xMwAAAAAAAAAAAAAAACQDkAAAAAAAAAGw9wrNaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxDsAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxHYAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
 
-navigator.mediaSession.setActionHandler('play', async function() {
-  log('> User clicked "Play" icon.');
-  playAudio();
-});
+        audio.play()
+            .then(reloadDelay)
+            .catch(log);
+    }
+
+    function reloadDelay() {
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+    }
+
+    navigator.mediaSession.setActionHandler('play', async function () {
+        log('> User clicked "Play" icon.');
+        playAudio();
+    });
 </script>
 
 </body>
