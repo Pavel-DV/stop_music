@@ -8,12 +8,12 @@
   <link rel="icon" type="image/png" sizes="96x96" href="https://0o00.ru/favicon-96x96.png">
 </head>
 <body>
-<button id="playButton">▶ PLAY</button>
+<h1>Tap</h1>
 <pre id="log"></pre>
 
 <script>
 
-document.querySelector('#playButton').addEventListener('click', playAudio);
+document.addEventListener('click', playAudio);
 const audio = document.createElement('audio');
 const track = getAwesomePlaylist();
 
@@ -30,15 +30,9 @@ function playAudio() {
   .catch(error => log(error));
 }
 
-audio.addEventListener('ended', function() {
-});
-
-
-/* Play & Pause */
-
 navigator.mediaSession.setActionHandler('play', async function() {
   log('> User clicked "Play" icon.');
-  await audio.play();
+  playAudio();
 });
 
 function getAwesomePlaylist() {
