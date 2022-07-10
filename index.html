@@ -20,13 +20,11 @@ const audio = document.createElement('audio');
 const track = getAwesomePlaylist();
 
 function log(e) {
-  var line = Array.prototype.slice.call(arguments).map(function(argument) {
-    return typeof argument === 'string' ? argument : JSON.stringify(argument);
-  }).join(' ');
+  const line = typeof e === 'string' ? e : e.message;
 
   document.querySelector('#log').textContent += line + '\n';
   
-  console.log(e);
+  console.log(line);
 };
 
 function playAudio() {
@@ -87,7 +85,12 @@ function getAwesomePlaylist() {
 }
 
 // playAudio();
-updateMetadata();
+try {
+  updateMetadata();
+} catch (error) {
+  log(error);
+}
+
 </script>
 
 </body>
