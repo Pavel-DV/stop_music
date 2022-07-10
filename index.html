@@ -4,44 +4,65 @@
     <title>Stop music</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="https://0o00.ru/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://0o00.ru/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon.png">
+
+    <style>
+        html {
+            background-color: black;
+        }
+
+        body {
+            color: white;
+            font-family: Calibri, "Segoe UI", sans-serif;
+            margin: 0 auto;
+            width: 100vw;
+            padding: 5% 5%;
+            height: 100vh;
+            font-size: 12vh;
+            line-height: 12vh;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Tap</h1>
+<h1 style="text-align: center;">Tap</h1>
 
 <pre id="log"></pre>
 
 <script>
-    const audio = document.createElement('audio');
+    'use strict';
 
-    document.addEventListener('click', playAudio);
+    (() => {
+        const audio = document.createElement('audio');
 
-    function log(e) {
-        const line = typeof e === 'string' ? e : e.message;
-        document.getElementById('log').textContent += line + '\n';
-        console.log(line);
-    }
+        document.addEventListener('click', playAudio);
 
-    function playAudio() {
-        audio.src = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbAAqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV////////////////////////////////////////////AAAAAExhdmM1OC4xMwAAAAAAAAAAAAAAACQDkAAAAAAAAAGw9wrNaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxDsAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxHYAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
+        function log(e) {
+            const line = typeof e === 'string' ? e : e.message;
+            document.getElementById('log').textContent += line + '\n';
+            console.log(line);
+        }
 
-        audio.play()
-            .then(reloadDelay)
-            .catch(log);
-    }
+        function playAudio() {
+            audio.src = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbAAqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV////////////////////////////////////////////AAAAAExhdmM1OC4xMwAAAAAAAAAAAAAAACQDkAAAAAAAAAGw9wrNaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxDsAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxHYAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
 
-    function reloadDelay() {
-        setTimeout(() => {
-            location.reload();
-        }, 1000);
-    }
+            audio.play()
+                .then(reloadDelay)
+                .catch(log);
+        }
 
-    navigator.mediaSession.setActionHandler('play', async function () {
-        log('> User clicked "Play" icon.');
-        playAudio();
-    });
+        function reloadDelay() {
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+
+        navigator.mediaSession.setActionHandler('play', async function () {
+            log('> User clicked "Play" icon.');
+            playAudio();
+        });
+    })();
 </script>
 
 </body>
