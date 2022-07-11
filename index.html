@@ -47,7 +47,7 @@
     (() => {
         const audio = document.createElement('audio');
 
-        document.addEventListener('click', playAudio);
+        document.addEventListener('touchstart', playAudio);
         document.addEventListener('touchmove', onSwipe, { passive: false }); // default passive
         document.addEventListener('touchend', onTouchEnd);
 
