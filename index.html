@@ -4,6 +4,7 @@
     <title>Stop music</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Stop Music">
     <link rel="apple-touch-icon" href="favicon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon.png">
 
@@ -26,9 +27,19 @@
 </head>
 <body>
 
-<h1 style="text-align: center;">Tap</h1>
+<img src="tap.png" alt="" style="
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+">
 
 <pre id="log"></pre>
+
+<div id="a2hs" style="display: none; position: absolute; background-color: #3D3D3F; font-size: 60px; line-height: 100px; bottom: 0; padding: 20px;">
+    To install tap <img style="vertical-align: sub;" src="share.png" alt=""> and choose <img src="add.png" alt="" style="vertical-align: sub;"> Add to Home Screen
+</div>
 
 <script>
     'use strict';
@@ -37,6 +48,8 @@
         const audio = document.createElement('audio');
 
         document.addEventListener('click', playAudio);
+        document.addEventListener('touchmove', onSwipe, { passive: false }); // default passive
+        document.addEventListener('touchend', onTouchEnd);
 
         function log(e) {
             const line = typeof e === 'string' ? e : e.message;
@@ -45,7 +58,6 @@
         }
 
         function playAudio() {
-            // audio.src = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbAAqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV////////////////////////////////////////////AAAAAExhdmM1OC4xMwAAAAAAAAAAAAAAACQDkAAAAAAAAAGw9wrNaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxDsAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxHYAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
             audio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjM2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU2LjQxAAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV';
 
             audio.play()
@@ -63,6 +75,18 @@
             log('> User clicked "Play" icon.');
             playAudio();
         });
+
+        function onSwipe(e) {
+            e.preventDefault(); //  do not scroll
+        }
+
+        function onTouchEnd(e) {
+            e.preventDefault(); //  do not resize
+        }
+
+        if (('standalone' in window.navigator) && !window.navigator.standalone) {
+            document.getElementById('a2hs').style.display='block';
+        }
     })();
 </script>
 
