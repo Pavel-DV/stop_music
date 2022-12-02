@@ -61,19 +61,19 @@
 
         audio.addEventListener("ended", function(){
             audio.currentTime = 0;
-            audio.play();
+            audio.play()
+                .then(reloadDelay)
+                .catch(log);
         });
 
         function playAudio() {
 
-            audio.play()
-                .then(reloadDelay)
-                .catch(log);
+            audio.play();
         }
 
         function reloadDelay() {
             setTimeout(() => {
-                // location.reload();
+                location.reload();
             }, 1000);
         }
 
