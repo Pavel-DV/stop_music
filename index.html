@@ -38,8 +38,8 @@
 
 <pre id="log"></pre>
 
-<div id="a2hs" style="display: none; position: absolute; background-color: #3D3D3F; font-size: 60px; line-height: 100px; bottom: 0; padding: 20px;">
-    To install tap <img style="vertical-align: sub;" src="share.png" alt=""> and choose <img src="add.png" alt="" style="vertical-align: sub;"> Add to Home Screen
+<div id="a2hs" style="display: none; position: absolute; background-color: #3D3D3F; font-size: 60px; bottom: 0; padding: 20px;">
+    Tap <img style="vertical-align: sub;" src="share.png" alt=""> and choose <img src="add.png" alt="" style="vertical-align: sub;"> Add to Home Screen
 </div>
 
 <script>
@@ -84,6 +84,7 @@
         function onTouchEnd(e) {
             e.preventDefault(); //  do not resize
         }
+        document.getElementById('a2hs').style.display='block';
 
         if (('standalone' in window.navigator) && !window.navigator.standalone) {
             document.getElementById('a2hs').style.display='block';
