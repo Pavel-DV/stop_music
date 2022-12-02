@@ -58,20 +58,15 @@
             console.log(line);
         }
 
+        audio.addEventListener("ended", function(){
+            audio.currentTime = 0;
+            audio.play();
+        });
+
         function playAudio() {
             audio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjM2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU2LjQxAAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV';
 
             audio.play()
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
-                .then(audio.play)
                 .then(audio.play)
                 .then(reloadDelay)
                 .catch(log);
