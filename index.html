@@ -46,7 +46,7 @@
     'use strict';
 
     (() => {
-        let count = 10;
+        let count = 20;
         const audio = document.createElement('audio');
         audio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjM2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU2LjQxAAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV';
 
@@ -65,10 +65,8 @@
                 reloadDelay();
             }
 
-            window.close();
-
             audio.currentTime = 0;
-            // playAudio();
+            playAudio();
         });
 
         function playAudio() {
@@ -77,8 +75,7 @@
 
         function reloadDelay() {
             setTimeout(() => {
-                window.close();
-                // location.reload();
+                location.reload();
             }, 1000);
         }
 
