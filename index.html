@@ -62,6 +62,7 @@
         audio.addEventListener("ended", function(){
             audio.currentTime = 0;
             audio.play()
+                .then(reloadDelay)
                 .catch(log);
         });
 
