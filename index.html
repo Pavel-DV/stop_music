@@ -46,7 +46,6 @@
     'use strict';
 
     (() => {
-        let count = 20;
         const audio = document.createElement('audio');
         audio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjM2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU2LjQxAAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV';
 
@@ -61,21 +60,19 @@
         }
 
         audio.addEventListener("ended", function(){
-            if (count-- < 0) {
-                reloadDelay();
-            }
-
             audio.currentTime = 0;
-            playAudio();
+            audio.play()
+                .catch(log);
         });
 
         function playAudio() {
-            audio.play().catch(log);
+
+            audio.play();
         }
 
         function reloadDelay() {
             setTimeout(() => {
-                location.reload();
+                // location.reload();
             }, 1000);
         }
 
